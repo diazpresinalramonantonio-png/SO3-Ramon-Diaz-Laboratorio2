@@ -1,0 +1,32 @@
+cd
+cd ..
+ls
+cat
+nano
+mkdir
+rm -rf
+sudo
+mount
+umount
+lbklb
+sudo dnf update && upgrate -y
+dnf repolist
+dnf repolist all
+dnf search
+git clone
+pwd
+dnf clean all
+sudo crontab -e
+sudo crontab -l
+0 23 * * * dnf update -y
+0 3 * * 0 /sbin/shutdown -r now
+echo "rm -rm -rf /tmp/*" | at not + 1 minute
+atq
+date
+lsblk
+sudo fdisk /dev/sdb
+sudo mkfs.exit4 /dev/sdb1
+sudo mount /dev/sdb1 
+touch
+sudo umount /home/Ramon/Desktop/Ramon
+sudo mount /dev/sdb1/mnt

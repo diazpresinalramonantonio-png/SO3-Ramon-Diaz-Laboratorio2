@@ -1,32 +1,79 @@
-cd
-cd ..
-ls
-cat
-nano
-mkdir
-rm -rf
-sudo
-mount
-umount
-lbklb
-sudo dnf update && upgrate -y
-dnf repolist
-dnf repolist all
-dnf search
-git clone
-pwd
-dnf clean all
-sudo crontab -e
-sudo crontab -l
-0 23 * * * dnf update -y
-0 3 * * 0 /sbin/shutdown -r now
-echo "rm -rm -rf /tmp/*" | at not + 1 minute
-atq
-date
-lsblk
-sudo fdisk /dev/sdb
-sudo mkfs.exit4 /dev/sdb1
-sudo mount /dev/sdb1 
-touch
-sudo umount /home/Ramon/Desktop/Ramon
-sudo mount /dev/sdb1/mnt
+****************************************************************************************************************************************************************************************************************************
+Práctica 1: Gestión de Paquetes y Repositorios
+****************************************************************************************************************************************************************************************************************************
+Actualizar el sistema
+sudo dnf check-update: Actualiza la lista de paquetes disponibles en los repositorios.
+
+sudo dnf upgrade -y: Descarga e instala todas las actualizaciones disponibles.
+
+Enumerar repositorios en uso:
+
+dnf repolist: Muestra los repositorios habilitados actualmente. 
+
+Buscar herramienta en el caché:
+
+dnf search bashtop: Busca el paquete dentro de los metadatos locales de los repositorios.
+
+Instalación de Bashtop (Repositorio EPEL):
+
+sudo dnf install epel-release -y: Instala el repositorio Extra Packages for Enterprise Linux (EPEL), necesario para encontrar Bashtop en Rocky 9.
+
+
+sudo dnf install bashtop -y: Instala la herramienta de monitoreo. 
+
+Desinstalación completa:
+
+sudo dnf remove bashtop -y: Elimina el binario del programa.
+
+rm -rf ~/.config/bashtop: Borra manualmente los archivos de configuración del usuario (procedimiento estándar para limpieza total).
+
+sudo dnf autoremove -y: Elimina automáticamente todas las dependencias que se instalaron con Bashtop y que ya no son necesarias.
+************************************************************************************************************************************************************************************************************************
+Práctica 2: Automatización y Tareas Programadas
+************************************************************************************************************************************************************************************************************************
+Actualización del sistema (Crontab):
+
+crontab -e: Abre el editor de tareas cron. 
+
+0 23 * * * sudo dnf upgrade -y: Ejecuta la actualización todos los días a las 11 p.m. (23:00).
+
+Reinicio dominical:
+
+0 3 * * 0 /usr/sbin/reboot: Programa el reinicio del servidor todos los domingos a las 3 a.m. (El 0 representa el domingo).
+
+Tarea única con "at":
+
+ls /tmp: Muestra el contenido actual de la carpeta temporal.
+
+echo "rm -rf /tmp/*" | at now + 1 minute: Programa la eliminación del contenido para dentro de un minuto.
+
+atq: Lista las tareas pendientes para verificar que se programó correctamente.
+
+ls /tmp: Ejecutar tras un minuto para confirmar que la carpeta está vacía.
+**********************************************************************************************************************************************************************************************************************
+Práctica 3: Gestión de Almacenamiento y Discos
+**********************************************************************************************************************************************************************************************************************
+Identificar el nuevo disco:
+
+lsblk: Permite visualizar el nuevo disco de 20GB (usualmente aparece como /dev/sdb o /dev/nvme0n2).
+
+Formatear y Montar:
+
+sudo mkfs.ext4 /dev/sdb: Formatea el disco con el sistema de archivos ext4.
+
+mkdir ~/Desktop/disco_nuevo: Crea la carpeta en el escritorio del usuario actual.
+
+sudo mount /dev/sdb ~/Desktop/disco_nuevo: Monta el disco en la carpeta creada.
+
+Crear archivo de prueba:
+
+
+touch ~/Desktop/disco_nuevo/AdrianAlcantara.txt: Crea el archivo solicitado dentro de la unidad montada. 
+
+Remontar en /mnt:
+
+sudo umount ~/Desktop/disco_nuevo: Desmonta la unidad de la carpeta del escritorio.
+
+sudo mount /dev/sdb /mnt: Monta el mismo disco en el directorio estándar del sistema.
+
+ls /mnt: Verifica que el archivo AdrianAlcantara.txt sigue existiendo, confirmando que los datos persisten en el hardware independientemente del punto de montaje.
